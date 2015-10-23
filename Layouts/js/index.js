@@ -8,7 +8,7 @@ var originalInput,
 
 function scrollToID(id, speed) {
     "use strict";
-    var offSet = 88,
+    var offSet = 70,
         targetOffset = $(id).offset().top - offSet,
         mainNav = $('#main-nav');
     $('html,body').animate({ scrollTop: targetOffset }, speed);
@@ -55,7 +55,11 @@ function setWaterMarkText() {
 }
 function getJobListings(dataParams, successCallback) {
     "use strict";
-    catsoneUrl = dataParams.getListings;
+    if (-1 === dataParams.getListings.indexOf('http://maqconsulting.catsone.com/careers/undefined')) {
+        catsoneUrl = dataParams.getListings;
+    } else {
+        catsoneUrl = 'http://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=' + $('.active.pageSelector > a:nth(0)').text();
+    }
     linkType = dataParams.linkType;
     $.ajax({
         url: 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent('select * from html where url="' + catsoneUrl + '"') + '&format=html',
@@ -64,6 +68,8 @@ function getJobListings(dataParams, successCallback) {
         dataType: 'jsonp',
         success: function (data) {
             data = data.results[0].replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replace('src=\"/images/portal/rssIcon.png\"', '').replace('src=\"/images/dialogPointer.gif\"', '').replace('src=\"/images/datagrid/sortDesc.gif\"', '').replace('src=\"/images/icons/magnifier_medium.png\"', '').replace('src=\"/images/v3/poweredByCATS.png\"', '').replace('magnifier_medium.png ', '');
+            data = data.replace('http://www.maqconsulting.com/Static/Images/Inc500.png', ' ').replace('http://www.maqconsulting.com/Static/Images/header_doubleSquareEnding.png', ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/facebook_large.png', 'g'), ' ').replace(new RegExp('http://maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/linkedin_large.png', 'g'), ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/twitter_large.png', 'g'), ' ').replace(new RegExp('images/icons/magnifier_medium.png', 'g'), '');
+            data = data.replace(new RegExp('http://www.maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ');
             $("#jobListingContainer").append('<div class="hidden">' + data + '</div>');
             if ("pagination" === linkType) {
                 $(".hidden").html($(".hidden #jobListingsContent"));
@@ -85,6 +91,7 @@ function getJobListings(dataParams, successCallback) {
 
 function successFunction(data) {
     "use strict";
+    var iCount, title, value, html = '<ul>';
     $(".hidden").remove();
     $("#dumpData").html(data);
     $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
@@ -100,6 +107,31 @@ function successFunction(data) {
         sendToFriendTemplate = sendToFriendTemplate.replace("{0}", $("#dumpData #jobTitle").html());
     }
 
+    for (iCount = 0; iCount < $('.detailsJobDescription table:nth(0) tbody tr').length; iCount++) {
+        title = $('.detailsJobDescription table:nth(0) tbody tr:nth(' + iCount + ') td:nth(0) strong').text();
+        value = $('.detailsJobDescription table:nth(0) tbody tr:nth(' + iCount + ') td:nth(1)').text();
+        if (title && value) {
+            html += '<li><span class="jobHead">' + title + '</span> : <span> ' + value + '</span></li>';
+        }
+    }
+    html += '</ul>';
+    $('.detailsJobDescription table:nth(0)').parent().append(html);
+    $('.detailsJobDescription table:nth(0)').remove();
+    if (0 !== $('#jobActionBtnContainer > div:nth(2)').length) {
+        $('#jobDetails').prepend($('#jobActionBtnContainer > div:nth(2)'));
+    } else {
+        $('#jobDetails').prepend("<div class='col-lg-12 col-xs-12'><input type='button' value='BACK TO JOBS' class='titleMessage buttonStyle' id='backToJobsBtn' /></div>");
+        $("#backToJobsBtn").bind("click", function () {
+            // Get Job listings
+            jsonData = {
+                getListings: "http://maqconsulting.catsone.com/careers/index.php?m=portal&portalID=850"
+            };
+
+            getJobListings(jsonData, successFunction);
+            $(".loadingIcon").show();
+            $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
+        });
+    }
     $(".pageSelector").bind("click", function (e) {
         e.preventDefault();
         jsonData = {
@@ -144,6 +176,7 @@ $(function () {
     $('a.page-scroll').on('click', function (event) {
         event.preventDefault();
         var sectionID = $(this).attr("href");
+        $('#siteNavigationContainer').removeClass('in');
         scrollToID(sectionID, 750);
     });
 
