@@ -6,6 +6,7 @@ var originalInput,
     linkType,
     jsonData;
 
+$('.currentYear').text(new Date().getFullYear());
 function scrollToID(id, speed) {
     "use strict";
     var offSet = 70,
@@ -138,6 +139,7 @@ function successFunction(data) {
             getListings: "http://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
             linkType: "pagination"
         };
+        location.href = '#findWorkSection';
         getJobListings(jsonData, successFunction);
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
