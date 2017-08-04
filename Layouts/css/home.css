@@ -859,13 +859,27 @@ div.jumbotron {
     margin-top: 10px;
     position: relative;
     margin-bottom: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
     #directions #turnTitle, #directions .total {
         margin-top: 49px;
         margin-bottom: 21px;
     }
+/* to remove start, stop and google indicator */
+.adp-placemark, .adp-legal {
+    display: none;
+}
 
+.adp-directions, .adp-directions td, .adp-directions td div {
+    border: none !important;
+    font-family: "wf_SegoeUI","Segoe UI","Segoe","Segoe WP","Tahoma","Verdana","Arial","sans-serif" !important;
+    font-size: 14px;
+    font-weight: 400 !important;
+    line-height: 17px;
+    font-style: normal;
+}
 #show, #clear {
     border: 2px solid #656565;
     height: 42px;
