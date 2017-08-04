@@ -161,7 +161,7 @@ function successFunction(data) {
         sendToFriendTemplate = sendToFriendTemplate.replace("{1}", $(this).find(".jobTitle").attr("href"));
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
-        $(".applyLink").attr('href', $(this).find(".jobTitle").attr("href").replace('details','apply')+"&portalID=850");
+        $(".applyLink").attr('href', $(this).find(".jobTitle").attr("href").replace('details', 'apply') + "&portalID=850");
     });
 
     if ($(window).width() <= 674) {
@@ -258,8 +258,7 @@ $(function () {
 function getLocation() {
     "use strict";
     var directionInputData,
-        latitude = 47.633087,
-        longitude = -122.133202,
+        oLatLng = { lat: 47.633082999999985, lng: -122.13328600000006 },
         eDirectionInput = $("#directionInput");
     document.getElementById('directions').innerHTML = "";
     if (eDirectionInput.hasClass("helpText") && eDirectionInput.hasClass("maqwatermark")) {
@@ -270,7 +269,7 @@ function getLocation() {
         eDirectionInput.removeClass("requiredInput");
         directionInputData = document.getElementById("directionInput").value;
         $('#directionInput').attr('title', directionInputData);
-        getRouteTo(latitude, longitude, directionInputData);
+        getRouteTo(oLatLng, directionInputData);
         $(".contactLoadingIcon").show();
         $("html, body").animate({ scrollTop: $(document).height() }, 750);
         $(".contactLoadingIcon").hide();
