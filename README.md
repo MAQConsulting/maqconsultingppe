@@ -1,3 +1,3 @@
 # MAQ Consulting
-MAQ Consulting website (http://maqconsulting.com)
+MAQ Consulting website (https://maqconsulting.com)
 Migrating existing UI from private hosting to Github
