@@ -60,22 +60,22 @@ String.prototype.replaceAll = function (search, replacement) {
 };
 function getJobListings(dataParams, successCallback) {
     "use strict";
-    if (-1 === dataParams.getListings.indexOf('http://maqconsulting.catsone.com/careers/undefined')) {
+    if (-1 === dataParams.getListings.indexOf('https://maqconsulting.catsone.com/careers/undefined')) {
         catsoneUrl = dataParams.getListings;
     } else {
-        catsoneUrl = 'http://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=' + $('.active.pageSelector > a:nth(0)').text();
+        catsoneUrl = 'https://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=' + $('.active.pageSelector > a:nth(0)').text();
     }
     linkType = dataParams.linkType;
     catsoneUrl = catsoneUrl.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
     $.ajax({
-        url: "http://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent('select * from htmlstring where url="' + catsoneUrl + '"') + " and xpath='//body'&env=store://datatables.org/alltableswithkeys&format=html",
+        url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent('select * from htmlstring where url="' + catsoneUrl + '"') + " and xpath='//body'&env=store://datatables.org/alltableswithkeys&format=html",
         type: 'GET',
         contentType: 'text/html; charset=UTF-8',
         dataType: 'jsonp',
         success: function (data) {
             data = data.results[0].replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replaceAll('<result>', '').replaceAll('</result>', '').replaceAll('<body>', '').replaceAll('</body>', '').replaceAll(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replaceAll('src=\"/images/portal/rssIcon.png\"', '').replaceAll('src=\"/images/dialogPointer.gif\"', '').replaceAll('src=\"/images/datagrid/sortDesc.gif\"', '').replaceAll('src=\"/images/icons/magnifier_medium.png\"', '').replaceAll('src=\"/images/v3/poweredByCATS.png\"', '').replaceAll('magnifier_medium.png ', '');
-            data = data.replace('http://www.maqconsulting.com/Static/Images/Inc500.png', ' ').replace('http://www.maqconsulting.com/Static/Images/header_doubleSquareEnding.png', ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/facebook_large.png', 'g'), ' ').replace(new RegExp('http://maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/linkedin_large.png', 'g'), ' ').replace(new RegExp('http://www.maqconsulting.com/Static/Images/twitter_large.png', 'g'), ' ').replace(new RegExp('images/icons/magnifier_medium.png', 'g'), '');
-            data = data.replace(new RegExp('http://www.maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ');
+            data = data.replace('https://www.maqconsulting.com/Static/Images/Inc500.png', ' ').replace('https://www.maqconsulting.com/Static/Images/header_doubleSquareEnding.png', ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/facebook_large.png', 'g'), ' ').replace(new RegExp('https://maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/linkedin_large.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/twitter_large.png', 'g'), ' ').replace(new RegExp('images/icons/magnifier_medium.png', 'g'), '');
+            data = data.replace(new RegExp('https://www.maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ');
             $("#jobListingContainer").append('<div class="hidden">' + data + '</div>');
             if ("pagination" === linkType) {
                 $(".hidden").html($(".hidden #jobListingsContent"));
@@ -130,7 +130,7 @@ function successFunction(data) {
         $("#backToJobsBtn").bind("click", function () {
             // Get Job listings
             jsonData = {
-                getListings: "http://maqconsulting.catsone.com/careers/index.php?m=portal&portalID=850"
+                getListings: "https://maqconsulting.catsone.com/careers/index.php?m=portal&portalID=850"
             };
 
             getJobListings(jsonData, successFunction);
@@ -141,7 +141,7 @@ function successFunction(data) {
     $(".pageSelector").bind("click", function (e) {
         e.preventDefault();
         jsonData = {
-            getListings: "http://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
+            getListings: "https://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
             linkType: "pagination"
         };
         location.href = '#findWorkSection';
@@ -201,7 +201,7 @@ $(function () {
     originalSearchInput = document.getElementById("searchJobListing").title;
     // Get Job listings
     jsonData = {
-        getListings: "http://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=1"
+        getListings: "https://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=1"
     };
 
     getJobListings(jsonData, successFunction);
@@ -211,7 +211,7 @@ $(function () {
     $("#backToJobsBtn").bind("click", function () {
         // Get Job listings
         jsonData = {
-            getListings: "http://maqconsulting.catsone.com/careers/index.php?m=portal&portalID=850"
+            getListings: "https://maqconsulting.catsone.com/careers/index.php?m=portal&portalID=850"
         };
 
         getJobListings(jsonData, successFunction);
@@ -228,7 +228,7 @@ $(function () {
     $("#searchJobListing").keypress(function (e) {
         if (e.which === 13) {
             jsonData = {
-                getListings: "http://maqconsulting.catsone.com/careers/index.php?search=" + $(this).val() + "&categories=%5B%5D"
+                getListings: "https://maqconsulting.catsone.com/careers/index.php?search=" + $(this).val() + "&categories=%5B%5D"
             };
             getJobListings(jsonData, successFunction);
             $(".loadingIcon").show();
@@ -296,7 +296,7 @@ function resetSearchBox() {
     $("#searchJobListing").title = originalSearchInput;
     $("#searchJobListing").addClass("helpText");
     jsonData = {
-        getListings: "http://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=1"
+        getListings: "https://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=1"
     };
     getJobListings(jsonData, successFunction);
 }
