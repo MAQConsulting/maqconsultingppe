@@ -58,7 +58,7 @@ function isCareersPage() {
     return false;
 }
 // Close menu if open
-closeMenuIfOpen();
+// closeMenuIfOpen();
 
 function updateTitle(viewName) {
     var sTitle = "MAQ Software | Data Management, Power BI, Artificial Intelligence";
@@ -85,4 +85,22 @@ function updateTitle(viewName) {
         }
     }
     $("title").text(sTitle);
+}
+
+function navigate() {
+    var sLoc = location.href, item;
+    var oArray = ["hiretalent", "expertise", "findwork", "benefits", "contacts"];
+    var iTopPosition, sScrollElement = "body,html", iFlag=1;
+    if (typeof sLoc !== "undefined" && sLoc !== "") {
+        oArray.forEach(function (item) {
+            if (sLoc.indexOf(item) !== -1) {
+                iTopPosition = $("#" + item).offset().top;
+                $(sScrollElement).animate({ scrollTop: iTopPosition }, 750);
+                iFlag = 0;
+            }
+        });
+        if (iFlag) {
+            $(sScrollElement).animate({ scrollTop: 0 }, 750);
+        }
+    }
 }
