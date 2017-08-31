@@ -2649,7 +2649,35 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
         .Pricing-box.highlight hr {
             border-color: #ddd;
         }
+.height-390{
+    height:390px;
+}
+@media (max-width:1199px){
+    .Pricing-box {
+        height:900px;
+    }
+    .height-390{
+        height:505px;
+    }
+}
+@media (max-width:991px){
+    .Pricing-box {
+        height:1025px;
+    }
+    .height-390{
+        height:750px;
+    }
 
+}
+@media (max-width:767px){
+    .Pricing-box {
+        height:auto;
+    }
+    .height-390{
+        height:auto;
+    }
+
+}
 .price-title h4, .price-title h5 {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -3032,6 +3060,13 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
             display: table-cell;
             vertical-align: middle;
             text-align: center;
+        }
+
+        @media (max-width:494px){
+
+            .inner-intro .container .title {
+                padding-top: 0px;
+            }
         }
 
 .full-intro .inner-intro .container .title h2 {
@@ -5331,7 +5366,9 @@ ul.nav-tabs {
 }
     .serviceTitle:hover{
     }
-
+.mobile-form{
+    display:none;
+}
 
 @media (max-width: 1199px) {
     /*.contact-box-left { 
@@ -5339,6 +5376,12 @@ ul.nav-tabs {
     }*/
     .dot {
         display: none;
+    }
+    .mobile-form{
+        display:normal;
+    }
+    .desktop-form{
+        display:none;
     }
 }
 @media (max-width: 1091px) {
@@ -5427,3 +5470,5 @@ color: black !important;
     font-size: 16px;
     font-weight: bold;
     }
+
+
