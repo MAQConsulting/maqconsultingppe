@@ -5672,3 +5672,16 @@ ul.nav-tabs {
 .loadingIcon {
     padding: 350px 15px;
 }
+
+.helpText {
+    color: #b2b2b2 !important;
+}
+#jobTitle {
+    text-transform: none;
+}
+#jobActionBtnContainer div {
+    padding-right: 0;
+}
+#jobActionBtnContainer div a {
+    float: right;
+}
