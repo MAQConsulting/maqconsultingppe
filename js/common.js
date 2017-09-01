@@ -452,7 +452,7 @@ function initJob() {
 
     $("#sendToFriendBtn").click(function () {
         window.location = sendToFriendTemplate;
-        //_gaq.push(['_trackEvent', 'Send to friend', 'Click', 'On Send to friend Button click']);
+        _gaq.push(['_trackEvent', 'Send to friend', 'Click', 'On Send to friend Button click']);
     });
 }
 
@@ -522,7 +522,7 @@ function getJobListings(dataParams, successCallback) {
                 $(".hidden").html($(".hidden #jobListingsContent"));
             } else if ("jobTitle" === linkType) {
                 var htmlNode = $(".hidden #stepJobDetails").html();
-                htmlNode = htmlNode.replace("<table", "<div").replace("</table>", "</div>").replace("<tbody", "<div").replace("</tbody>", "</div>").replace("<tr", "<div").replace("</tr>", "</div>").replace("<td", "<div").replace("</td>", "</div>").replace("<ul", "<ol").replace("</ul>", "</ol>").replace(("MSJobs@maqconsulting.com"), "<a class='mailLink' href='mailto:MSJobs@MAQConsulting.com'>MSJobs@MAQConsulting.com</a>").replace("MSJobs@maqsoftware.com", "<a class='mailLink' href='mailto:MSJobs@maqsoftware.com'>MSJobs@maqsoftware.com</a>");
+                htmlNode = htmlNode.replace("<table", "<div").replace("</table>", "</div>").replace("<tbody", "<div").replace("</tbody>", "</div>").replace("<tr", "<div").replace("</tr>", "</div>").replace("<td", "<div").replace("</td>", "</div>").replace("<ul", "<ol").replace("</ul>", "</ol>").replace(("MSJobs@maqconsulting.com"), "<a class='mailLink' href='mailto:MSJobs@MAQConsulting.com'>MSJobs@MAQConsulting.com</a>").replace(("MSJobs@MAQConsulting.com"), "<a class='mailLink' href='mailto:MSJobs@MAQConsulting.com'>MSJobs@MAQConsulting.com</a>").replace("MSJobs@maqsoftware.com", "<a class='mailLink' href='mailto:MSJobs@maqsoftware.com'>MSJobs@maqsoftware.com</a>");
                 $(".hidden").html(htmlNode);
             } else {
                 $(".hidden").html($(".hidden #jobListingsContent"));
@@ -566,7 +566,7 @@ function successFunction(data) {
     if (0 !== $('#jobActionBtnContainer > div:nth(2)').length) {
         $('#jobDetails').prepend($('#jobActionBtnContainer > div:nth(2)'));
     } else {
-        $('#jobDetails').prepend("<div class='col-lg-12 col-xs-12'><input type='button' value='BACK TO JOBS' class='titleMessage buttonStyle' id='backToJobsBtn' /></div>");
+        $('#jobDetails').prepend("<div class='col-lg-12 col-xs-12'><a style='width:150px;' value='BACK TO JOBS' class='btn btn-md btn-black-line' id='backToJobsBtn'>Back to Jobs</a></div>");
         $("#backToJobsBtn").bind("click", function () {
             // Get Job listings
             jsonData = {
@@ -584,7 +584,7 @@ function successFunction(data) {
             getListings: "https://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
             linkType: "pagination"
         };
-        location.href = '#';
+        //location.href = '#';
         getJobListings(jsonData, successFunction);
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
@@ -596,17 +596,33 @@ function successFunction(data) {
             getListings: $(this).find(".jobTitle").attr("href"),
             linkType: "jobTitle"
         };
-        location.href = '#';
+        //location.href = '#';
         getJobListings(jsonData, successFunction);
         sendToFriendTemplate = sendToFriendTemplate.replace("{1}", $(this).find(".jobTitle").attr("href"));
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
         $(".applyLink").attr('href', $(this).find(".jobTitle").attr("href").replace('details', 'apply') + "&portalID=850");
     });
-
+    $(".pager li:first-child a").html("<i class='ion ion-arrow-left-b'></i>PREVIOUS");
+    $(".pager li:last-child a").html("NEXT<i class='ion ion-arrow-right-b'>");
+    $(".pager li a").addClass("btn-link-a");
+    
     if ($(window).width() <= 674) {
         $(".detailsJobDescription").after($("#jobActionBtnContainer"));
     } else {
         $("#jobDetailPosted").after($("#jobActionBtnContainer"));
     }
+}
+function resetSearchBox() {
+    "use strict";
+    $("#searchJobListing").val("");
+    $("#searchJobListing").val(originalSearchInput);
+    $("#searchJobListing").title = originalSearchInput;
+    $("#searchJobListing").addClass("helpText");
+    jsonData = {
+        getListings: "https://maqconsulting.catsone.com/careers/index.php?m=portal&a=listings&sort=posted&sortDir=desc&page=1"
+    };
+    $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
+    $(".loadingIcon").show();
+    getJobListings(jsonData, successFunction);
 }
