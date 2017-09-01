@@ -314,15 +314,15 @@ h4 {
     font-size: 17px;
     letter-spacing: 1px;
     line-height: 28px;
-   
 }
 
     h4.h4 {
         letter-spacing: 4px;
     }
-    h3.h4{
-        font-weight:600;
-    }
+
+h3.h4 {
+    font-weight: 600;
+}
 
 h5 {
     font-size: 15px;
@@ -2638,8 +2638,8 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
 
 .Pricing-box {
     border: 1px solid #f1f1f1;
-    padding:20px;
-    height:1110px;
+    padding: 20px;
+    height: 1110px;
 }
 
     .Pricing-box.highlight {
@@ -2651,30 +2651,33 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
             border-color: #ddd;
         }
 
-    .Pricing-box img{
-        padding-bottom:10px;
-        padding-top:10px;
-        width:50%;
+    .Pricing-box img {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        width: 50%;
     }
-.height-620{
-    height:575px;
+
+.height-620 {
+    height: 575px;
 }
 
 @media (max-width:1199px) {
     .Pricing-box {
-        height:1280px;
+        height: 1280px;
     }
-    .height-620{
-        height:655px;
+
+    .height-620 {
+        height: 655px;
     }
 }
 
 @media (max-width:991px) {
     .Pricing-box {
-        height:1600px;
+        height: 1600px;
     }
-    .height-620{
-        height:750px;
+
+    .height-620 {
+        height: 750px;
     }
 
     .height-390 {
@@ -2686,8 +2689,9 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     .Pricing-box {
         height: auto;
     }
-    .height-620{
-        height:auto;
+
+    .height-620 {
+        height: auto;
     }
 
     .height-390 {
@@ -2728,7 +2732,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
 
 .Pricing-box .pricing-features {
     font-size: 13px;
-    /*/*text-transform: uppercase;*/*/
+    /*/*text-transform: uppercase;*/ */;
 }
 
     .Pricing-box .pricing-features ul {
@@ -5084,6 +5088,10 @@ ul.project-detail-block, .project-detail-block ul {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+
 .news-image {
     max-height: 197px;
     max-width: 350px;
@@ -5501,26 +5509,166 @@ ul.nav-tabs {
 }
 
 #resetSearch {
-    width: 100%;
+    margin-top: 0;
+    padding-top: 15px;
     height: 70%;
+    width: 100%;
 }
+
 #searchJobListing {
-    width: 100%
+    width: 100%;
 }
+
 .sortingHeader span, .sortingHeader img {
     display: none;
 }
 
-#jobListingContainer > div { 
+#jobListingContainer > div {
     padding-left: 0;
 }
+
 #jobListingContainer table {
     width: 100%;
     border: 0;
 }
+
 #jobHeadImage, .FB, #ccpBackLink {
     display: none;
 }
+
 #ccpBackImage {
     display: none;
+}
+
+#jobListingsData, #jobDetails {
+    position: relative;
+    width: 100%;
+}
+
+.pager {
+    padding-left: 0;
+    margin: 20px 0;
+    text-align: center;
+    list-style: none;
+    width: 100%;
+}
+
+    .pager li:first-child {
+        float: left;
+    }
+
+    .pager li:last-child {
+        float: right;
+    }
+
+    .pager li {
+        display: inline-block;
+    }
+/*#applyJobBtn, #sendToFriendBtn, #backToJobsBtn, #resetSearch {
+    color: #333;
+    width: 164px;
+    height: 42px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid #ccc;
+    margin-bottom: 7px;
+    font: 16px "SEGOE UI";
+    padding-bottom: 5px;
+    background-color: #EAEAEA;
+}*/
+#backToJobsBtn {
+    margin-bottom: 15px;
+}
+
+#jobTitle {
+    border-bottom: 1px solid #333;
+    padding-bottom: 11px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font: bold 30px "SEGOE UI";
+    color: #333;
+    line-height: 25px;
+}
+
+#jobDetailPosted {
+    display: inline;
+    float: left;
+    font: normal 16px "SEGOE UI";
+}
+
+#jobActionBtnContainer {
+    display: block;
+    float: right;
+    position: relative;
+    z-index: 1;
+    padding-right: 0;
+    width: 205px;
+}
+
+#jobDetails div {
+    padding-left: 0;
+}
+
+#reset {
+    padding-right: 0;
+}
+
+@media (max-width: 575px) {
+    #resetSearch {
+        padding-top:9px;
+        height: auto;
+    }
+}
+
+.dateDiv {
+    display: inline-block;
+    margin-bottom: 11px;
+}
+
+/*.detailsJobDescription ul li:first-child {
+    display: none;
+}*/
+
+.detailsJobDescription ul:last-child {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.jobHead {
+    display: inline-block;
+    min-width: 80px;
+}
+
+.pagerDisable {
+    display: none !important;
+}
+
+#jobListings .jobID {
+    display: none;
+}
+
+#jobListings tbody tr td {
+    cursor: pointer;
+}
+
+    #jobListings tbody tr td:hover {
+        color: #bb141a;
+        transition: all 0.25s ease 0s;
+        -moz-transition: all 0.25s ease 0s;
+        -webkit-transition: all 0.25s ease 0s;
+        -o-transition: all 0.25s ease 0s;
+    }
+
+#jobListings tbody tr th a:hover {
+    color: Black !important;
+    cursor: default !important;
+}
+
+.loadingIcon, .contactLoadingIcon {
+    /*padding: 200px 15px;*/
+    margin: 0 auto;
+    min-height: 50% !important;
+}
+
+.loadingIcon {
+    padding: 350px 15px;
 }
