@@ -76,8 +76,8 @@ function updateTitle(viewName) {
             case "benefits":
                 sTitle = "MAQ Consulting | Benefits";
                 break;
-            case "contacts":
-                sTitle = "MAQ Consulting | Contacts";
+            case "contact":
+                sTitle = "MAQ Consulting | Contact";
                 break;
         }
     }
@@ -93,7 +93,7 @@ function updateTitle(viewName) {
     //}
 }
 
-var oArray = ["hiretalent", "expertise", "findwork", "benefits", "contacts"];
+var oArray = ["hiretalent", "expertise", "findwork", "benefits", "contact"];
 function navigate(sLoc) {
    var item;
     var iTopPosition, sScrollElement = "body,html", iFlag = 1;
