@@ -5614,7 +5614,7 @@ ul.nav-tabs {
 
 @media (max-width: 575px) {
     #resetSearch {
-        padding-top:9px;
+        padding-top: 9px;
         height: auto;
     }
 }
@@ -5646,42 +5646,65 @@ ul.nav-tabs {
     display: none;
 }
 
-#jobListings tbody tr td {
+
+#jobListings tbody tr:not(:first-child):not(:nth-child(2)):hover {
+    background-color: #bb141a;
+    color: white;
     cursor: pointer;
 }
 
-    #jobListings tbody tr td:hover {
+.pager .active a {
+    color: #bb141a !important;
+}
+
+/*#jobListings tbody tr:not(:first-child):hover a{
+        background-color: #bb141a !important;
+        color: white !important;
+    }*/
+
+/*#jobListings tbody tr td:hover {
         color: #bb141a;
         transition: all 0.25s ease 0s;
         -moz-transition: all 0.25s ease 0s;
         -webkit-transition: all 0.25s ease 0s;
         -o-transition: all 0.25s ease 0s;
-    }
+    }*/
 
 #jobListings tbody tr th a:hover {
     color: Black !important;
     cursor: default !important;
 }
 
-.loadingIcon, .contactLoadingIcon {
-    /*padding: 200px 15px;*/
-    margin: 0 auto;
-    min-height: 50% !important;
-}
-
 .loadingIcon {
-    padding: 350px 15px;
+    margin: 0 auto;
+    padding: 25% 25%;
 }
 
 .helpText {
     color: #b2b2b2 !important;
 }
+
 #jobTitle {
     text-transform: none;
 }
+
 #jobActionBtnContainer div {
     padding-right: 0;
 }
-#jobActionBtnContainer div a {
-    float: right;
+
+    #jobActionBtnContainer div a {
+        float: right;
+    }
+
+#jobListings > tbody .rowEven > td, #jobListings > tbody .rowOdd > td {
+    padding-left: 15px;
+}
+
+#jobListings > tbody > tr > th {
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+td {
+    padding-right: 10px;
 }
