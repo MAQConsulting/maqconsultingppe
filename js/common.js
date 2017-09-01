@@ -95,19 +95,15 @@ function updateTitle(viewName) {
 
 var oArray = ["hiretalent", "expertise", "findwork", "benefits", "contact"];
 function navigate(sLoc) {
-   var item;
-    var iTopPosition, sScrollElement = "body,html", iFlag = 1;
+    var item;
+    var iTopPosition = 0, sScrollElement = "body,html", iFlag = 1;
     if (typeof sLoc !== "undefined" && sLoc !== "") {
         oArray.forEach(function (item) {
             if (sLoc.indexOf(item) !== -1) {
                 iTopPosition = $("#" + item).offset().top;
-                $(sScrollElement).animate({ scrollTop: iTopPosition }, 750);
-                iFlag = 0;
             }
         });
-        if (iFlag) {
-            $(sScrollElement).animate({ scrollTop: 0 }, 750);
-        }
+        $(sScrollElement).animate({ scrollTop: iTopPosition }, 750);
     }
 }
 
@@ -396,7 +392,7 @@ $(function () {
         var url = $(this).attr("data-url");
         navigate(url);
     });
-    
+
     setWaterMarkText();
     originalSearchInput = document.getElementById("searchJobListing").title;
     initJob();
@@ -409,7 +405,6 @@ function initJob() {
 
     getJobListings(jsonData, successFunction);
     $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
-    $(".contactLoadingIcon").hide();
 
     $("#backToJobsBtn").bind("click", function () {
         // Get Job listings
@@ -529,7 +524,7 @@ function getJobListings(dataParams, successCallback) {
             data = data.results[0].replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replaceAll('<result>', '').replaceAll('</result>', '').replaceAll('<body>', '').replaceAll('</body>', '').replaceAll(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replaceAll('src=\"/images/portal/rssIcon.png\"', '').replaceAll('src=\"/images/dialogPointer.gif\"', '').replaceAll('src=\"/images/datagrid/sortDesc.gif\"', '').replaceAll('src=\"/images/icons/magnifier_medium.png\"', '').replaceAll('src=\"/images/v3/poweredByCATS.png\"', '').replaceAll('magnifier_medium.png ', '');
             data = data.replace('https://www.maqconsulting.com/Static/Images/Inc500.png', ' ').replace('https://www.maqconsulting.com/Static/Images/header_doubleSquareEnding.png', ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/facebook_large.png', 'g'), ' ').replace(new RegExp('https://maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/linkedin_large.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/twitter_large.png', 'g'), ' ').replace(new RegExp('images/icons/magnifier_medium.png', 'g'), '');
             data = data.replace(new RegExp('https://www.maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ');
-            
+
             $("#jobListingContainer").append('<div class="hidden">' + data + '</div>');
             if ("pagination" === linkType) {
                 $(".hidden").html($(".hidden #jobListingsContent"));
@@ -553,11 +548,17 @@ function successFunction(data) {
     var iCount, title, value, html = '<ul>';
     $(".hidden").remove();
     $("#dumpData").html(data);
+    $("#jobListingsData a.jobTitle, #jobListingsData a.jobTitleHot").each(function () {
+        $(this).replaceWith("<span class='" + $(this).attr("class") + "' href='" + $(this).attr('href') + "'>" + $(this).text() + "</span>");
+    });
     $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
     $(".loadingIcon").hide();
     if ($("#dumpData #jobListings").length) {
         $("#jobListingContainer").show();
         $("#jobListingsData").html(data);
+        $("#jobListingsData a.jobTitle, #jobListingsData a.jobTitleHot").each(function () {
+            $(this).replaceWith("<span class='" + $(this).attr("class") + "' href='" + $(this).attr('href') + "'>" + $(this).text() + "</span>");
+        });
     } else if ($("#dumpData #jobDetails").length) {
         $("#jobDescriptionContainer").after($("#jobActionBtnContainer"));
         $("#jobDescriptionContainer").html(data).show();
@@ -617,7 +618,7 @@ function successFunction(data) {
     $(".pager li:first-child a").html("<i class='ion ion-arrow-left-b'></i>PREVIOUS");
     $(".pager li:last-child a").html("NEXT<i class='ion ion-arrow-right-b'>");
     $(".pager li a").addClass("btn-link-a");
-    
+
     if ($(window).width() <= 674) {
         $(".detailsJobDescription").after($("#jobActionBtnContainer"));
     } else {
