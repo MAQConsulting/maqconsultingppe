@@ -381,8 +381,7 @@ function JSON_CALLBACK() {
     alert("Yes");
 }
 /*globals getRouteTo,_gaq*/
-var originalInput,
-    originalSearchInput,
+var originalSearchInput,
     sendToFriendTemplate = "mailto:?subject=Job Opening: {0} &body=I came across this job on the internet and I thought that you or someone you know might be interested. {1}",
     catsoneUrl,
     linkType,
@@ -397,6 +396,9 @@ $(function () {
         var url = $(this).attr("data-url");
         navigate(url);
     });
+    
+    setWaterMarkText();
+    originalSearchInput = document.getElementById("searchJobListing").title;
     initJob();
 });
 
@@ -455,7 +457,18 @@ function initJob() {
         _gaq.push(['_trackEvent', 'Send to friend', 'Click', 'On Send to friend Button click']);
     });
 }
-
+// Set the watermark text on search input
+function setWaterMarkText() {
+    "use strict";
+    $('.maqwatermark').each(function () {
+        if (($(this)[0].value === "" || $(this)[0].value === $(this)[0].title)) {
+            $(this).val($(this)[0].title);
+        }
+        $(this).bind("focus", function () { watermarktext_focus($(this)[0]); });
+        $(this).bind("click", function () { watermarktext_focus($(this)[0]); });
+        $(this).bind("blur", function () { watermarktext_blur($(this)[0]); });
+    });
+}
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.replace(new RegExp(search.source, 'g'), replacement);
@@ -584,7 +597,6 @@ function successFunction(data) {
             getListings: "https://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
             linkType: "pagination"
         };
-        //location.href = '#';
         getJobListings(jsonData, successFunction);
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
@@ -596,7 +608,6 @@ function successFunction(data) {
             getListings: $(this).find(".jobTitle").attr("href"),
             linkType: "jobTitle"
         };
-        //location.href = '#';
         getJobListings(jsonData, successFunction);
         sendToFriendTemplate = sendToFriendTemplate.replace("{1}", $(this).find(".jobTitle").attr("href"));
         $(".loadingIcon").show();
