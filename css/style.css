@@ -171,7 +171,7 @@ ul.list-none-ib {
     }
 
 ul.text-cap li, .text-cap {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -273,9 +273,9 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
     color: #323232;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-family: 'Raleway', sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     margin-top: 0px;
     margin-bottom: 10px;
 }
@@ -287,7 +287,7 @@ h1 {
 }
 
     h1.h1, h2.h2 {
-        letter-spacing: 10px;
+        letter-spacing: 4px;
     }
 
 @media (max-width: 767px) {
@@ -306,18 +306,22 @@ h2 {
 
 h3 {
     font-size: 21px;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     line-height: 32px;
 }
 
 h4 {
     font-size: 17px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     line-height: 28px;
+   
 }
 
     h4.h4 {
         letter-spacing: 4px;
+    }
+    h3.h4{
+        font-weight:600;
     }
 
 h5 {
@@ -350,7 +354,7 @@ h1.large {
     font-family: 'Raleway', sans-serif;
     letter-spacing: 1px;
     text-align: center;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -webkit-transition: all 0.3s ease 0s;
@@ -502,7 +506,7 @@ button {
     border-bottom: 1px dotted transparent;
     font-weight: 600;
     font-size: 12px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     letter-spacing: 2px;
     text-decoration: underline;
 }
@@ -2468,7 +2472,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     color: #323232;
     font-size: 11px;
     font-weight: 600;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 
@@ -2638,7 +2642,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
 .Pricing-box {
     border: 1px solid #f1f1f1;
     padding:20px;
-    height:760px;
+    height:1110px;
 }
 
     .Pricing-box.highlight {
@@ -2649,22 +2653,28 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
         .Pricing-box.highlight hr {
             border-color: #ddd;
         }
-.height-390{
-    height:390px;
+
+    .Pricing-box img{
+        padding-bottom:10px;
+        padding-top:10px;
+        width:50%;
+    }
+.height-620{
+    height:575px;
 }
 @media (max-width:1199px){
     .Pricing-box {
-        height:900px;
+        height:1280px;
     }
-    .height-390{
-        height:505px;
+    .height-620{
+        height:655px;
     }
 }
 @media (max-width:991px){
     .Pricing-box {
-        height:1025px;
+        height:1600px;
     }
-    .height-390{
+    .height-620{
         height:750px;
     }
 
@@ -2673,7 +2683,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     .Pricing-box {
         height:auto;
     }
-    .height-390{
+    .height-620{
         height:auto;
     }
 
@@ -2709,7 +2719,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
 }
 .Pricing-box .pricing-features {
     font-size: 13px;
-    /*text-transform: uppercase;*/
+    /*/*text-transform: uppercase;*/*/
 }
 
     .Pricing-box .pricing-features ul {
@@ -2875,7 +2885,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
         }
 
     .side-menu > ul > li > a {
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         letter-spacing: 1px;
         display: block;
     }
@@ -3084,7 +3094,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     display: inline-block;
     color: #323232;
     font-size: 12px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     letter-spacing: 3px;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -3694,7 +3704,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
         float: left;
         margin-bottom: 5px;
         margin-right: 5px;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
     }
 
         .widget-tag li a {
@@ -3799,7 +3809,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
             display: block;
             margin-left: 15px;
             margin-right: 15px;
-            text-transform: uppercase;
+            /*text-transform: uppercase;*/
             letter-spacing: 2px;
             font-size: 12px;
             font-weight: 600;
@@ -3868,7 +3878,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     }
 
     .item-mask p {
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         font-size: 11px;
         letter-spacing: 1.5px;
         font-weight: 400;
@@ -3893,7 +3903,7 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
 .project-detail-block p {
     font-size: 12px;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 ul.project-detail-block, .project-detail-block ul {
@@ -4033,7 +4043,7 @@ ul.project-detail-block, .project-detail-block ul {
         }
 
     .blog-post .post-meta, .comment-list .post-meta, .sidebar-widget .post-meta {
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         color: #999;
         font-size: 13px;
     }
@@ -4069,7 +4079,7 @@ ul.project-detail-block, .project-detail-block ul {
 
     .blog-post .post-tag {
         color: #999;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         font-size: 13px;
     }
 
@@ -4080,7 +4090,7 @@ ul.project-detail-block, .project-detail-block ul {
     .blog-post .post-more-link {
         font-size: 11px;
         font-weight: 600;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         letter-spacing: 1px;
     }
 
