@@ -58,7 +58,7 @@ function isCareersPage() {
     return false;
 }
 // Close menu if open
-closeMenuIfOpen();
+
 
 function updateTitle(viewName) {
     var sTitle = "MAQ Consulting | Data Management, Power BI, Artificial Intelligence";
@@ -94,8 +94,8 @@ function updateTitle(viewName) {
 }
 
 var oArray = ["hiretalent", "expertise", "findwork", "benefits", "contacts"];
-function navigate() {
-    var sLoc = location.href, item;
+function navigate(sLoc) {
+   var item;
     var iTopPosition, sScrollElement = "body,html", iFlag = 1;
     if (typeof sLoc !== "undefined" && sLoc !== "") {
         oArray.forEach(function (item) {
@@ -388,7 +388,17 @@ var originalInput,
     linkType,
     jsonData;
 
-//initJob();
+
+$(function () {
+    "use strict";
+    loadPlugins();
+    closeMenuIfOpen();
+    $(".i-am-link").click(function () {
+        var url = $(this).attr("data-url");
+        navigate(url);
+    });
+    initJob();
+});
 
 function initJob() {
     jsonData = {
@@ -409,13 +419,14 @@ function initJob() {
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
     });
-    //$(window).resize(function () {
-    //    if ($(window).width() <= 674) {
-    //        $(".detailsJobDescription").after($("#jobActionBtnContainer"));
-    //    } else {
-    //        $("#jobDetailPosted").after($("#jobActionBtnContainer"));
-    //    }
-    //});
+
+    $(window).resize(function () {
+        if ($(window).width() <= 674) {
+            $(".detailsJobDescription").after($("#jobActionBtnContainer"));
+        } else {
+            $("#jobDetailPosted").after($("#jobActionBtnContainer"));
+        }
+    });
     $("#searchJobListing").keypress(function (e) {
         if (e.which === 13) {
             jsonData = {
@@ -441,13 +452,13 @@ function initJob() {
 
     $("#sendToFriendBtn").click(function () {
         window.location = sendToFriendTemplate;
-        _gaq.push(['_trackEvent', 'Send to friend', 'Click', 'On Send to friend Button click']);
+        //_gaq.push(['_trackEvent', 'Send to friend', 'Click', 'On Send to friend Button click']);
     });
 }
 
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
+    return target.replace(new RegExp(search.source, 'g'), replacement);
 };
 
 function getJobListings(dataParams, successCallback) {
@@ -505,6 +516,7 @@ function getJobListings(dataParams, successCallback) {
             data = data.results[0].replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replaceAll('<result>', '').replaceAll('</result>', '').replaceAll('<body>', '').replaceAll('</body>', '').replaceAll(/<script[^>]*>[\s\S]*?<\/script>/gi, '').replaceAll('src=\"/images/portal/rssIcon.png\"', '').replaceAll('src=\"/images/dialogPointer.gif\"', '').replaceAll('src=\"/images/datagrid/sortDesc.gif\"', '').replaceAll('src=\"/images/icons/magnifier_medium.png\"', '').replaceAll('src=\"/images/v3/poweredByCATS.png\"', '').replaceAll('magnifier_medium.png ', '');
             data = data.replace('https://www.maqconsulting.com/Static/Images/Inc500.png', ' ').replace('https://www.maqconsulting.com/Static/Images/header_doubleSquareEnding.png', ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/facebook_large.png', 'g'), ' ').replace(new RegExp('https://maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/linkedin_large.png', 'g'), ' ').replace(new RegExp('https://www.maqconsulting.com/Static/Images/twitter_large.png', 'g'), ' ').replace(new RegExp('images/icons/magnifier_medium.png', 'g'), '');
             data = data.replace(new RegExp('https://www.maqconsulting.com/Static/Images/MAQConsulting_logo.png', 'g'), ' ');
+            
             $("#jobListingContainer").append('<div class="hidden">' + data + '</div>');
             if ("pagination" === linkType) {
                 $(".hidden").html($(".hidden #jobListingsContent"));
@@ -515,7 +527,6 @@ function getJobListings(dataParams, successCallback) {
             } else {
                 $(".hidden").html($(".hidden #jobListingsContent"));
             }
-
             successCallback($(".hidden").html());
         },
         error: function (data) {
@@ -573,7 +584,7 @@ function successFunction(data) {
             getListings: "https://maqconsulting.catsone.com/careers/" + $(this).attr("href"),
             linkType: "pagination"
         };
-        location.href = '/findwork';
+        location.href = '#';
         getJobListings(jsonData, successFunction);
         $(".loadingIcon").show();
         $("#jobListingContainer, #jobDescriptionContainer, #jobActionBtnContainer").hide();
@@ -585,7 +596,7 @@ function successFunction(data) {
             getListings: $(this).find(".jobTitle").attr("href"),
             linkType: "jobTitle"
         };
-        location.href = '/findwork';
+        location.href = '#';
         getJobListings(jsonData, successFunction);
         sendToFriendTemplate = sendToFriendTemplate.replace("{1}", $(this).find(".jobTitle").attr("href"));
         $(".loadingIcon").show();

@@ -5070,6 +5070,10 @@ ul.project-detail-block, .project-detail-block ul {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+
 .news-image {
     max-height: 197px;
     max-width: 350px;
