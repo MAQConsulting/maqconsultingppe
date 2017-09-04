@@ -108,9 +108,9 @@ function navigate(sLoc) {
 }
 
 $(window).scroll(function () {
-    scroll();
+    handleScroll();
 });
-function scroll() {
+function handleScroll() {
     var iTopPosition;
     $(".nav-menu-inner a").removeClass("active");
     updateTitle();
