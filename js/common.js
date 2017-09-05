@@ -61,7 +61,7 @@ function isCareersPage() {
 
 
 function updateTitle(viewName) {
-    var sTitle = "MAQ Consulting | Data Management, Power BI, Artificial Intelligence";
+    var sTitle = "MAQ Consulting | Hire Talent";
     if (typeof viewName !== "undefined") {
         switch (viewName.toLowerCase()) {
             case "hiretalent":
