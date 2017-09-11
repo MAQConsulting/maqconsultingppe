@@ -2653,7 +2653,8 @@ header.header-dark.header-prepare .side-menu-btn ul li a {
     .Pricing-box img {
         padding-bottom: 10px;
         padding-top: 10px;
-        width: 50%;
+        max-width: 75%;
+        max-height:80px;
     }
 
 
@@ -5674,25 +5675,25 @@ td {
 }
 
 .partners{
-    height:325px;
+    height:410px;
 }
 .pBenefits{
     height:590px;
 }
 @media(max-width:1199px){
     .partners{
-        height:365px;
+        height:450px;
     }
     .pBenefits{
-        height:670px;
+        height:725px;
     }
 }
 @media(max-width:991px){
     .partners{
-        height:450px;
+        height:605px;
     }
     .pBenefits{
-        height:960px;
+        height:1045px;
     }
 }
 @media(max-width:767px){
